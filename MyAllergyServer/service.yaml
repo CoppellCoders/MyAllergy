@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2019-04-06T20:33:11Z"
+  labels:
+    run: hackunt-server
+  name: my-service
+  namespace: default
+  resourceVersion: "4904"
+  selfLink: /api/v1/namespaces/default/services/my-service
+  uid: 325d4c5b-58ab-11e9-839f-42010a80007e
+spec:
+  clusterIP: 10.7.251.232
+  externalTrafficPolicy: Cluster
+  loadBalancerIP: 35.193.202.40
+  ports:
+  - nodePort: 32472
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: hackunt-server
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 35.193.202.40
