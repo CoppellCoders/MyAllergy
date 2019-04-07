@@ -3,6 +3,8 @@ import 'package:page_indicator/page_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:geolocator/geolocator.dart';
+
 
 
 
@@ -17,9 +19,6 @@ class PollenPage extends StatefulWidget {
 
 
 
-
-
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -30,13 +29,24 @@ class PollenPage extends StatefulWidget {
 }
   class _PollenPage extends State<PollenPage> {
 
+    Map<String, double> currentLcoation = new Map();
+
+    double latitude = 0.0;
+    double longitude = 0.0;
+
+
     List pollenperr = new List();
     String tempp,percipp,humidd;
     @override
     initState() {
       super.initState();
       _makeGetRequest();
+ 
+
     }
+
+
+
     _makeGetRequest() async {
       // make request
       Response response = await get(
@@ -420,7 +430,7 @@ class PollenPage extends StatefulWidget {
             ],
           ), SizedBox(height: 15,)
           ]),
-        )
+        ),
       ]);
     }
 

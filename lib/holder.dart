@@ -4,6 +4,7 @@ import 'package:myallergy/add_alergy.dart';
 import 'package:myallergy/allergy_his.dart';
 import 'package:myallergy/allergy_list.dart';
 import 'package:myallergy/Pollen.dart';
+import 'package:myallergy/scan.dart';
 class Hold extends StatefulWidget {
   List<AllergyHistoryModel> model = new List();
 
@@ -65,7 +66,7 @@ class HoldState extends State<Hold> {
           PollenPage(),
           History(widget.model),
           AllergyList(),
-          PollenPage(),
+          ScanPage(),
         ],
       ),
     );

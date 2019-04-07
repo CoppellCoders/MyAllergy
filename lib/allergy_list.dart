@@ -14,6 +14,8 @@ class AllergyList extends StatefulWidget {
 class AllergyListState extends State<AllergyList> {
   List data;
 
+
+
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
@@ -32,7 +34,9 @@ class AllergyListState extends State<AllergyList> {
             ),
             Spacer(),
             IconButton(icon: Icon(Icons.add,color: Colors.white,size: 40,), onPressed: (){
-              Navigator.push(context, new MaterialPageRoute(builder: (context) => AddAlergyPage()));
+              Navigator.push(context, new MaterialPageRoute(builder: (context) => AddAlergyPage())).then((onValue){
+                initState();
+              });
             },)
           ],
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,7 +68,7 @@ class AllergyListState extends State<AllergyList> {
         String cur = data[index];
         print(cur);
         return new Container(
-            margin: EdgeInsets.only(top: 30,left: 15,right: 15),
+            margin: EdgeInsets.only(top: 30,left: 15,right: 15, bottom: 10),
             decoration: new BoxDecoration(
                 color: Colors.white,
                 boxShadow: [ new BoxShadow(
@@ -126,7 +130,20 @@ class AllergyListState extends State<AllergyList> {
                         ],
                       ),
                       onPressed: () {
-
+                        data.removeAt(index);
+                        String write = "";
+                        for(var i = 0; i < data.length; i++){
+                          if(i!=data.length-1){
+                            write+=data[i]+"\n";
+                          }else{
+                            write+=data[i]+"";
+                          }
+                        }
+                        print(write);
+                        writeCounter(write);
+                        setState(() {
+                          data = data;
+                        });
                       }),
                 )
               ],
@@ -138,7 +155,13 @@ class AllergyListState extends State<AllergyList> {
 
 
   }
+  Future<File> writeCounter(String data) async {
+    final file = await _localFile;
 
+    // Write the file
+    print('Writing File');
+    return file.writeAsString('$data', mode: FileMode.write);
+  }
   @override
   void initState() {
     print('Init state called');
@@ -154,7 +177,7 @@ class AllergyListState extends State<AllergyList> {
       String contents = await file.readAsString();
       print('data '+ contents);
       this.setState(() {
-        data = contents.substring(0, contents.length-1).split(";");
+        data = contents.trim().split("\n");
       });
       print(data);
     } catch (e) {
