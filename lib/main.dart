@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myallergy/home.dart';
-
+import 'package:myallergy/add_alergy.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,8 +12,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 
         primarySwatch: Colors.green,
+        primaryColor: Color(0xff00A473),
+        accentColor: Color(0xff00E7B0)
       ),
-      home: HomePage(),
+      home: AddAlergyPage(),
     );
   }
 }
