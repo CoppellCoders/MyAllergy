@@ -80,7 +80,13 @@ class AllergyListState extends State<AllergyList> {
                 new Container(
                     decoration: new BoxDecoration(
                         color: Theme.of(context).primaryColor,
-                        boxShadow: [new BoxShadow(color: Colors.black)],
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Color(0xffE2E2E2),
+                            blurRadius: 6,
+                            spreadRadius: 1,
+                          )
+                        ],
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(25.0),
                             topRight: Radius.circular(25.0))),
