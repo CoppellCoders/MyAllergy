@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myallergy/add_alergy.dart';
 import 'package:myallergy/allergy_list.dart';
 import 'package:myallergy/Pollen.dart';
+import 'package:myallergy/scan.dart';
 class Hold extends StatefulWidget {
   @override
   HoldState createState() {
@@ -43,7 +44,7 @@ class HoldState extends State<Hold> {
           PollenPage(),
           PollenPage(),
           AllergyList(),
-          PollenPage(),
+          ScanPage(),
         ],
       ),
     );

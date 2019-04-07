@@ -14,6 +14,8 @@ class AllergyList extends StatefulWidget {
 class AllergyListState extends State<AllergyList> {
   List data;
 
+
+
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
