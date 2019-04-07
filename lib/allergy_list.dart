@@ -124,7 +124,20 @@ class AllergyListState extends State<AllergyList> {
                         ],
                       ),
                       onPressed: () {
-
+                        data.removeAt(index);
+                        String write = "";
+                        for(var i = 0; i < data.length; i++){
+                          if(i!=data.length-1){
+                            write+=data[i]+"\n";
+                          }else{
+                            write+=data[i]+"";
+                          }
+                        }
+                        print(write);
+                        writeCounter(write);
+                        setState(() {
+                          data = data;
+                        });
                       }),
                 )
               ],
@@ -136,7 +149,13 @@ class AllergyListState extends State<AllergyList> {
 
 
   }
+  Future<File> writeCounter(String data) async {
+    final file = await _localFile;
 
+    // Write the file
+    print('Writing File');
+    return file.writeAsString('$data', mode: FileMode.write);
+  }
   @override
   void initState() {
     print('Init state called');
@@ -152,7 +171,7 @@ class AllergyListState extends State<AllergyList> {
       String contents = await file.readAsString();
       print('data '+ contents);
       this.setState(() {
-        data = contents.substring(0, contents.length-1).split(";");
+        data = contents.trim().split("\n");
       });
       print(data);
     } catch (e) {
