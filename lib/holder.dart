@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myallergy/home.dart';
-
+import 'package:myallergy/add_alergy.dart';
+import 'package:myallergy/allergy_list.dart';
 class Hold extends StatefulWidget {
   @override
   HoldState createState() {
@@ -41,8 +42,8 @@ class HoldState extends State<Hold> {
         children: <Widget>[
           HomePage(),
           HomePage(),
-          HomePage(),
-          HomePage(),
+          AllergyList(),
+          AddAlergyPage(),
         ],
       ),
     );

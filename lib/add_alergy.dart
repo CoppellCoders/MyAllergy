@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:myallergy/RaisedGradientButton.dart';
+import 'package:myallergy/allergy_list.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 class AddAlergyPage extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+
   String allergy, description;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Add Alergy"),
-      ),
-      body: new Row(
+    return new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Container(
@@ -85,20 +83,22 @@ class AddAlergyPage extends StatelessWidget {
                             ],
                           ),
                           onPressed: () {
-                            submit();
+                            submit(context);
                           }),
                     )
                   ],
                 ),
               )),
         ],
-      ),
+
     );
   }
-  void submit(){
+  void submit(context){
     if(formKey.currentState.validate()){
       formKey.currentState.save();
-      writeCounter("allergy:$allergy;description:$description");
+      writeCounter("$allergy:$description;");
+
+
     }
   }
   Future<String> get _localPath async {
@@ -107,13 +107,14 @@ class AddAlergyPage extends StatelessWidget {
   }
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/counter.txt');
+    return File('$path/data.txt');
   }
   Future<File> writeCounter(String data) async {
     final file = await _localFile;
 
     // Write the file
-    return file.writeAsString('$data');
+    print('Writing File');
+    return file.writeAsString('$data', mode: FileMode.append);
   }
 
 }
