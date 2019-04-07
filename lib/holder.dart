@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myallergy/home.dart';
+import 'package:myallergy/Pollen.dart';
 
 class Hold extends StatefulWidget {
   @override
@@ -39,10 +39,10 @@ class HoldState extends State<Hold> {
         index: _currentIndex,
         //has to be in order
         children: <Widget>[
-          HomePage(),
-          HomePage(),
-          HomePage(),
-          HomePage(),
+          PollenPage(),
+          PollenPage(),
+          PollenPage(),
+          PollenPage(),
         ],
       ),
     );
