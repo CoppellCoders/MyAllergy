@@ -133,11 +133,7 @@ class AllergyListState extends State<AllergyList> {
                         data.removeAt(index);
                         String write = "";
                         for(var i = 0; i < data.length; i++){
-                          if(i!=data.length-1){
-                            write+=data[i]+"\n";
-                          }else{
-                            write+=data[i]+"";
-                          }
+                            write+=data[i]+";";
                         }
                         print(write);
                         writeCounter(write);
@@ -175,11 +171,13 @@ class AllergyListState extends State<AllergyList> {
 
       // Read the file
       String contents = await file.readAsString();
-      print('data '+ contents);
-      this.setState(() {
-        data = contents.trim().split("\n");
-      });
-      print(data);
+      if(contents.length>0) {
+        print('data ' + contents);
+        this.setState(() {
+          data = contents.substring(0, contents.length - 1).split(";");
+        });
+        print(data);
+      }
     } catch (e) {
       print(e);
       // If encountering an error, return 0

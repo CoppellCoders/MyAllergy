@@ -114,7 +114,7 @@ class _AddAlergyPage extends State<AddAlergyPage> {
       formKey.currentState.save();
       allergy = allergy.trim();
       description = description.trim();
-      writeCounter('$allergy:$description\n');
+      writeCounter('$allergy:$description;');
       Navigator.pop(context);
 
     }
