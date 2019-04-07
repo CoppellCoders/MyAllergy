@@ -1,6 +1,9 @@
 const express = require("express");
 const request = require("request");
 const app = express();
+const $ = require('cheerio');
+const rp = require('request-promise');
+
 const port = process.env.PORT || 3000;
 const apiKey = "ZxiWudzdDanY5tIge7tIar6S9RCvhv89zSuxSEz6";
 
@@ -15,6 +18,66 @@ app.get("/", async function(req, res) {
     res.json(data);
   }
 });
+
+
+app.get('/weather', function (req, res) {
+  var id = req.query.id.toLowerCase();
+  if(id.length>0){
+   var url = url = 'https://weather.com/forecast/allergy/l/'+id;
+
+      rp(url)
+.then(function(html){
+  //success!
+  var JSONString2 = [];
+  var num =0;
+  var updated = $('circle',html).each(function(){
+
+    if((!(typeof $(this).attr('style') === "undefined")||$(this).attr('style')!=null)&&num<3){
+      num+=1;
+     // console.log();
+    //  console.log($(this).css('stroke-dashoffset'));
+      var big =parseFloat($(this).css('stroke-dasharray'), 10);
+      var small = parseFloat($(this).css('stroke-dashoffset'), 10);
+      var divided = 1-(small/big);
+      JSONString2.push(divided);
+
+    }
+
+
+
+  });
+
+var updated = $('.col.humidity',html).html().toString();
+var humidity = updated.substring(updated.indexOf('<div>')+5,updated.indexOf('<sup>'))+"%";
+
+JSONString2.push({"humidity":humidity});
+var updatedd = $('.results__value',html).html().toString();
+var humidityy = updatedd.substring(updatedd.indexOf('<sup>')-3,updatedd.indexOf('<sup>'))+"%";
+//console.log(updatedd);
+JSONString2.push({"precip":humidityy});
+var updateddd = $('.col.outdoor',html).html().toString();
+var humidityyy = updateddd.substring(updateddd.indexOf('<div>')+5,updateddd.indexOf('<!---->'))+"°F";
+//console.log(updateddd);
+JSONString2.push({"precip":humidityyy});
+          res.send(JSONString2);
+      
+    
+  
+  
+
+})
+.catch(function(err){
+  console.log(err);
+  res.send(err);
+});
+ 
+
+
+  }else{
+      res.send('error');
+  }
+});
+
 
 function getNDB(upc) {
   return new Promise((resolve, reject) => {
