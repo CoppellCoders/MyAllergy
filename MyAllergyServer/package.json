@@ -12,6 +12,7 @@
   "dependencies": {
     "cheero": "0.0.1",
     "express": "^4.16.4",
+    "jsdom": "^14.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }

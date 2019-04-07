@@ -15,7 +15,7 @@ class ScanPage extends StatefulWidget {
 
 class ScanPageState extends State<ScanPage> {
   List data;
-  String result = "Hey there !";
+  String result = "Results will appear here";
   _makeGetRequest(upc) async {
     // make request
     Response response = await get(
@@ -30,20 +30,31 @@ class ScanPageState extends State<ScanPage> {
     print(response.body);
     var responseJson = json.decode(response.body);
     print(responseJson);
-    await readCounter();
-    List items = responseJson['ing'].toString().split(",");
-    List probs = new List();
-    for (var item in items){
-      for(var a in data){
-        print(item.toString().toLowerCase().trim() + " " + a.toString().split(":")[0].trim().toLowerCase());
-        if(item.toString().toLowerCase().trim()==a.toString().split(":")[0].trim().toLowerCase()){
-          probs.add(item.toString());
+    if(responseJson['error'] != null){
+      setState(() {
+        result = "Could not find item";
+      });
+
+    }else {
+      await readCounter();
+      List items = responseJson['ing'].toString().split(",");
+      List probs = new List();
+      for (var item in items) {
+        for (var a in data) {
+          print(item.toString().toLowerCase().trim() + " " +
+              a.toString().split(":")[0].trim().toLowerCase());
+          if (item.toString().toLowerCase().trim() ==
+              a.toString().split(":")[0].trim().toLowerCase()) {
+            probs.add(item.toString());
+          }
         }
       }
+      setState(() {
+        result = (responseJson['name'].toString().split(",")[0] + "\n" +
+            ((probs.length == 0) ? "Safe to eat" : "Not safe, contains: \n" +
+                probs.toString()));
+      });
     }
-    setState(() {
-      result = probs.length == 0 ? "Safe to eat" : probs.toString();
-    });
 
     // TODO convert json to object...
 
