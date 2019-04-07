@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:http/http.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final PageController controller = new PageController();
+
+
+    _makeGetRequest() async {
+      // make request
+      Response response = await get(
+          'https://jsonplaceholder.typicode.com/posts');
+
+      // sample info available in response
+      int statusCode = response.statusCode;
+      Map<String, String> headers = response.headers;
+      String contentType = headers['content-type'];
+      String json = response.body;
+      print(json);
+
+      // TODO convert json to object...
+
+    }
+      final PageController controller = new PageController();
+
+
+_makeGetRequest();
 
     // TODO: implement build
     return Column(children: <Widget>[
@@ -93,7 +114,7 @@ class HomePage extends StatelessWidget {
                       percent: .50,
                       center: Container(
                         padding: EdgeInsets.all(20),
-                        child: Image.asset('assets/tree_icon.png'),
+                        child: Image.asset('assests/tree_icon.png'),
                       ),
                       progressColor: Color(0xff76CC90),
 
@@ -104,7 +125,7 @@ class HomePage extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           height: 60,
-                          child: Image.asset('assets/grteen_icon.png'),
+                          child: Image.asset('assests/grteen_icon.png'),
                         ),
                         SizedBox(height: 10,),
                         Text('50%',style: TextStyle(color: Color(0xff959595),fontSize: 20),),
@@ -164,7 +185,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     height: 60,
-                    child: Image.asset('assets/weather_icon.png'),
+                    child: Image.asset('assests/weather_icon.png'),
                   ),
                   SizedBox(height: 10,),
                   Text('50%',style: TextStyle(color: Color(0xff959595),fontSize: 20),),
@@ -184,7 +205,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     height: 60,
-                    child: Image.asset('assets/water_icon.png'),
+                    child: Image.asset('assests/water_icon.png'),
                   ),
                   SizedBox(height: 10,),
                   Text('50%',style: TextStyle(color: Color(0xff959595),fontSize: 20),),
@@ -204,7 +225,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     height: 60,
-                    child: Image.asset('assets/wind_icon.png'),
+                    child: Image.asset('assests/wind_icon.png'),
                   ),
                   SizedBox(height: 10,),
                   Text('50%',style: TextStyle(color: Color(0xff959595),fontSize: 20),),

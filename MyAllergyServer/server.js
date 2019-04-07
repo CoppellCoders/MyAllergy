@@ -50,15 +50,15 @@ app.get('/weather', function (req, res) {
 var updated = $('.col.humidity',html).html().toString();
 var humidity = updated.substring(updated.indexOf('<div>')+5,updated.indexOf('<sup>'))+"%";
 
-JSONString2.push({"humidity":humidity});
+JSONString2.push(humidity);
 var updatedd = $('.results__value',html).html().toString();
 var humidityy = updatedd.substring(updatedd.indexOf('<sup>')-3,updatedd.indexOf('<sup>'))+"%";
 //console.log(updatedd);
-JSONString2.push({"precip":humidityy});
+JSONString2.push(humidityy);
 var updateddd = $('.col.outdoor',html).html().toString();
 var humidityyy = updateddd.substring(updateddd.indexOf('<div>')+5,updateddd.indexOf('<!---->'))+"°F";
 //console.log(updateddd);
-JSONString2.push({"precip":humidityyy});
+JSONString2.push(humidityyy);
           res.send(JSONString2);
       
     
