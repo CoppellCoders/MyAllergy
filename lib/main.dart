@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myallergy/holder.dart';
-import 'package:myallergy/home.dart';
+import 'package:myallergy/Pollen.dart';
 import 'package:myallergy/add_alergy.dart';
 void main() => runApp(MyApp());
 

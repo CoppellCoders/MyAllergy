@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myallergy/home.dart';
 import 'package:myallergy/add_alergy.dart';
 import 'package:myallergy/allergy_list.dart';
+import 'package:myallergy/Pollen.dart';
 class Hold extends StatefulWidget {
   @override
   HoldState createState() {
@@ -40,10 +40,10 @@ class HoldState extends State<Hold> {
         index: _currentIndex,
         //has to be in order
         children: <Widget>[
-          HomePage(),
-          HomePage(),
-          AllergyList(),
-          AddAlergyPage(),
+          PollenPage(),
+          PollenPage(),
+          PollenPage(),
+          PollenPage(),
         ],
       ),
     );
