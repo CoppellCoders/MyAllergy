@@ -118,15 +118,22 @@ class ScanPageState extends State<ScanPage> {
       appBar: AppBar(
         title: Text("QR Scanner"),
       ),
-      body: Center(
+      body: Container( height: 400,margin: EdgeInsets.all(20),decoration: new BoxDecoration(
+          color: Colors.grey[100],
+          boxShadow: [ new BoxShadow(
+            color: Color(0xffE2E2E2),
+            blurRadius: 6,
+            spreadRadius: 1,
+          )],
+          borderRadius: new BorderRadius.circular(25.0)),child: Column(children: <Widget>[SizedBox(height: 10,),Center(child: Text("Result",style: new TextStyle(fontSize: 25.0,)),),Center(
         child: Text(
           result,
-          style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          style: new TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold,),
         ),
-      ),
+      )],),),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.camera_alt),
-        label: Text("Scan"),
+        icon: Icon(Icons.camera_alt,color: Colors.white,),
+        label: Text("Scan",style: TextStyle(color: Colors.white),),
         onPressed: _scanQR,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
