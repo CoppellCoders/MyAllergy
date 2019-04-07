@@ -12,7 +12,7 @@ class PollenPage extends StatefulWidget {
   List pollenper = new List();
   String temp,percip,humid;
 
-
+  int x =0;
   final PageController controller = new PageController();
 
 
@@ -71,12 +71,14 @@ class PollenPage extends StatefulWidget {
           tempp = responseJson[x].toString();
         }
 
+        print(response.body);
         setState(() {
           widget.pollenper = pollenperr;
           widget.humid = humidd;
           widget.temp = tempp;
           widget.percip = percipp;
         });
+
       }
 
       // TODO convert json to object...
@@ -182,7 +184,7 @@ class PollenPage extends StatefulWidget {
                       child: CircularPercentIndicator(
                         radius: 130.0,
                         lineWidth: 8.0,
-                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[0]) :.5,
+                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[0]) :1,
                         center: Container(
                           padding: EdgeInsets.all(20),
                           child: Image.asset('assests/tree_icon.png'),
@@ -199,7 +201,7 @@ class PollenPage extends StatefulWidget {
                             child: Image.asset('assests/grteen_icon.png'),
                           ),
                           SizedBox(height: 10,),
-                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[0])*100).round()).toString()+"%":"50%", style: TextStyle(
+                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[0])*100).round()).toString()+"%":"100%", style: TextStyle(
                               color: Color(0xff959595), fontSize: 20),),
                           SizedBox(height: 10,)
 
@@ -229,7 +231,7 @@ class PollenPage extends StatefulWidget {
                       child: CircularPercentIndicator(
                         radius: 130.0,
                         lineWidth: 8.0,
-                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[1]) :.5,
+                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[1]) :.8,
                         center: Container(
                           padding: EdgeInsets.all(20),
                           child: Image.asset('assests/grass_icon.png'),
@@ -246,7 +248,7 @@ class PollenPage extends StatefulWidget {
                             child: Image.asset('assests/grteen_icon.png'),
                           ),
                           SizedBox(height: 10,),
-                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[1])*100).round()).toString()+"%":"50%", style: TextStyle(
+                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[1])*100).round()).toString()+"%":"80%", style: TextStyle(
                               color: Color(0xff959595), fontSize: 20),),
                           SizedBox(height: 10,)
 
@@ -276,7 +278,7 @@ class PollenPage extends StatefulWidget {
                       child: CircularPercentIndicator(
                         radius: 130.0,
                         lineWidth: 8.0,
-                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[2]) :.5,
+                        percent: widget.pollenper.length>0?double.parse(widget.pollenper[2]) :.2,
                         center: Container(
                           padding: EdgeInsets.all(20),
                           child: Image.asset('assests/weed_icon.png'),
@@ -293,7 +295,7 @@ class PollenPage extends StatefulWidget {
                             child: Image.asset('assests/grteen_icon.png'),
                           ),
                           SizedBox(height: 10,),
-                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[2])*100).round()).toString()+"%":"50%", style: TextStyle(
+                          Text(widget.pollenper.length>0?((double.parse(widget.pollenper[2])*100).round()).toString()+"%":"20%", style: TextStyle(
                               color: Color(0xff959595), fontSize: 20),),
                           SizedBox(height: 10,)
 
@@ -358,7 +360,7 @@ class PollenPage extends StatefulWidget {
                       child: Image.asset('assests/weather_icon.png'),
                     ),
                     SizedBox(height: 10,),
-                    Text(widget.temp!=null?widget.temp.toString():"50°F",
+                    Text(widget.temp!=null?widget.temp.toString():"67°F",
                       style: TextStyle(
                           color: Color(0xff959595), fontSize: 20),),
                     SizedBox(height: 10,)
@@ -383,7 +385,7 @@ class PollenPage extends StatefulWidget {
                       child: Image.asset('assests/water_icon.png'),
                     ),
                     SizedBox(height: 10,),
-                    Text(widget.percip!=null?widget.percip.toString():"50%",
+                    Text(widget.percip!=null?widget.percip.toString():"83%",
                       style: TextStyle(
                           color: Color(0xff959595), fontSize: 20),),
                     SizedBox(height: 10,)
@@ -408,7 +410,7 @@ class PollenPage extends StatefulWidget {
                       child: Image.asset('assests/wind_icon.png'),
                     ),
                     SizedBox(height: 10,),
-                    Text(widget.humid!=null?widget.humid.toString():"50%",
+                    Text(widget.humid!=null?widget.humid.toString():"89%",
                       style: TextStyle(
                           color: Color(0xff959595), fontSize: 20),),
                     SizedBox(height: 10,)

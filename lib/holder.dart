@@ -70,10 +70,10 @@ class HoldState extends State<Hold> {
         //has to be in order
         children: <Widget>[
 
-          PollenPage(),
+          ScanPage(),
           History(widget.model),
           AllergyList(),
-          ScanPage(),
+          PollenPage(),
         ],
       ),
     );
