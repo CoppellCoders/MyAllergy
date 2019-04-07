@@ -3,6 +3,8 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:myallergy/add_alergy.dart';
+import 'package:myallergy/RaisedGradientButton.dart';
+
 
 class AllergyList extends StatefulWidget {
   @override
@@ -14,8 +16,49 @@ class AllergyListState extends State<AllergyList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: data == null ? 0 : data.length,
+    return new Column(children: <Widget>[
+      Container(
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(left: 10, top: 35),
+              child: Text(
+                "Allergy List",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 25),
+              ),
+            ),
+            Spacer(),
+            IconButton(icon: Icon(Icons.add), onPressed: (){
+              Navigator.push(context, new MaterialPageRoute(builder: (context) => AddAlergyPage()));
+            },)
+          ],
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+        ),
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * .12,
+        decoration: new BoxDecoration(
+          gradient: new LinearGradient(colors: [
+            Theme
+                .of(context)
+                .primaryColor,
+            Theme
+                .of(context)
+                .accentColor
+          ]),
+          borderRadius: new BorderRadius.only(
+              bottomRight: Radius.circular(25.0),
+              bottomLeft: Radius.circular(25.0)),
+        ),
+      ),
+
+      Flexible(child:
+    ListView.builder(
+    itemCount: data == null ? 0 : data.length,
       itemBuilder: (BuildContext context, int index) {
         print(data.length);
         String cur = data[index];
@@ -52,10 +95,38 @@ class AllergyListState extends State<AllergyList> {
                         IconButton(icon: Icon(Icons.add), padding: EdgeInsets.all(0),)
                       ],
                     )),
+                new Row(children: <Widget>[
+                  new Text('Notes: ${cur.substring(cur.indexOf(":")+1)}', textAlign: TextAlign.start,),
+                ],),
+                new Expanded(
+                  flex: 0,
+                  child: RaisedGradientButton(
+                      width: MediaQuery.of(context).size.width * .3,
+                      height: MediaQuery.of(context).size.height * .04,
+                      margin: EdgeInsets.only(
+                          left: 10, right: 10, top: 20, bottom: 20),
+                      child: Text(
+                        'Remove',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      gradient: LinearGradient(
+                        colors: <Color>[
+                          Color(0xffFFA1A1),
+                          Color(0xffFFA1A1)
+                        ],
+                      ),
+                      onPressed: () {
+
+                      }),
+                )
               ],
             ));
       },
-    );
+    ))
+    ],);
+
+
+
   }
 
   @override
@@ -73,7 +144,7 @@ class AllergyListState extends State<AllergyList> {
       String contents = await file.readAsString();
       print('data '+ contents);
       this.setState(() {
-        data = contents.split(";");
+        data = contents.substring(0, contents.length-1).split(";");
       });
       print(data);
     } catch (e) {

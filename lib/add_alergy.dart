@@ -9,10 +9,10 @@ class AddAlergyPage extends StatelessWidget {
   String allergy, description;
   @override
   Widget build(BuildContext context) {
-    return new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Container(
+    return
+    new Scaffold(
+      body: new Center(
+          child: new Container(
               margin: EdgeInsets.only(top: 30),
               decoration: new BoxDecoration(
                   color: Colors.white,
@@ -87,11 +87,11 @@ class AddAlergyPage extends StatelessWidget {
                           }),
                     )
                   ],
-                ),
-              )),
-        ],
+                )),
 
-    );
+
+
+    )));
   }
   void submit(context){
     if(formKey.currentState.validate()){
