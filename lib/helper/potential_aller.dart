@@ -11,11 +11,51 @@ class Potential extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     model = modell.toList();
+
+    void createSnackBar(String message) {
+      final snackBar = new SnackBar(content: new Text(message),duration: Duration(seconds: 1,milliseconds: 900),
+          backgroundColor: Colors.green);
+
+      // Find the Scaffold in the Widget tree and use it to show a SnackBar!
+      Scaffold.of(context).showSnackBar(snackBar);
+    }
+
+
+  void _showDialog() {
+      // flutter defined function
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("Send to Doctor?"),
+            content: new Text("This will send a notification to your doctor about your allergies"),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Close"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),  new FlatButton(
+                child: new Text("Send"),
+                onPressed: () {
+                  createSnackBar("Sucessfully sent report to doctor");
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     // TODO: implement build
     return new Container(
 
-        margin: EdgeInsets.only(top: 30, left: 15, right: 15),
+        margin: EdgeInsets.only(top: 10, left: 15, right: 15),
         decoration: new BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -26,7 +66,7 @@ class Potential extends StatelessWidget {
               )
             ],
             borderRadius: new BorderRadius.circular(25.0)),
-        height: MediaQuery.of(context).size.height * .5,
+        height: MediaQuery.of(context).size.height * .3,
         width: MediaQuery.of(context).size.width * .9,
         child: Column(
           children: <Widget>[
@@ -53,17 +93,25 @@ class Potential extends StatelessWidget {
               child: ListView.builder(
                   itemCount: model.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return new Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(boxShadow: [
-                        new BoxShadow(
+                    return Container(
+                        height: 30,
+                        margin: EdgeInsets.only(right: 10,left: 10),
+                        decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(50)),boxShadow:  [new BoxShadow(
                           color: Color(0xffE2E2E2),
                           blurRadius: 6,
                           spreadRadius: 1,
-                        )
-                      ],borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Text(model[index]),
-                    );
+                        )]),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 10,),
+                            Text(model[index]),
+                            Spacer(),
+                            Container(margin:EdgeInsets.only(right: 10),child:
+                            Image.asset('assests/bad.png'),),
+
+                            SizedBox(height: 10)
+                          ],
+                        ));
                   }),
             ),     Container(child:
             RaisedGradientButton(
@@ -81,8 +129,13 @@ class Potential extends StatelessWidget {
     Theme.of(context).accentColor
                   ],
                 ),
-                onPressed: () {})
+                onPressed: () {_showDialog();})
             )],
         ));
+
+
   }
+
+
+
 }

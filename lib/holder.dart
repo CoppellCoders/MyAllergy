@@ -10,16 +10,23 @@ class Hold extends StatefulWidget {
 
   List<String> food = new List();
   List<bool> fooda = new List();
+
+  List<String> food2= new List();
+  List<bool> food2a = new List();
+
   @override
   HoldState createState() {
-    food.add("Durum Semolia");
-    food.add("Niacin");
+    food.add("Soy");
+    food.add("Wheat");
+    food.add("Milk");
+    food.add("Cheese");
+    food2.add("Cream cheese");
+    food2.add("Wheat");
+    food2.add("Milk");
 
-
-    fooda.add(false);
-    fooda.add(true);
-    model.add(new AllergyHistoryModel("Spaghetti",food ,fooda  , "Received rashes on arm","Apr 6 2018"));
-    model.add(new AllergyHistoryModel("Coca-Cola",food ,fooda  , "Body felt tingily","Apr 7 2018"));
+    ;
+    model.add(new AllergyHistoryModel("Hot Pocket",food  , "Hives on arms","Apr 6 2018"));
+    model.add(new AllergyHistoryModel("Kraft Bagel-Fuls",food2  , "Dizziness, lightheadedness","Apr 7 2018"));
     return new HoldState();
   }
 }
