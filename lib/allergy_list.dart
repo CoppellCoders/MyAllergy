@@ -31,7 +31,7 @@ class AllergyListState extends State<AllergyList> {
               ),
             ),
             Spacer(),
-            IconButton(icon: Icon(Icons.add), onPressed: (){
+            IconButton(icon: Icon(Icons.add,color: Colors.white,size: 40,), onPressed: (){
               Navigator.push(context, new MaterialPageRoute(builder: (context) => AddAlergyPage()));
             },)
           ],
@@ -64,10 +64,14 @@ class AllergyListState extends State<AllergyList> {
         String cur = data[index];
         print(cur);
         return new Container(
-            margin: EdgeInsets.only(top: 30),
+            margin: EdgeInsets.only(top: 30,left: 15,right: 15),
             decoration: new BoxDecoration(
                 color: Colors.white,
-                boxShadow: [new BoxShadow(color: Colors.black)],
+                boxShadow: [ new BoxShadow(
+                  color: Color(0xffE2E2E2),
+                  blurRadius: 6,
+                  spreadRadius: 1,
+                )],
                 borderRadius: new BorderRadius.circular(25.0)),
             height: MediaQuery.of(context).size.height * .2,
             width: MediaQuery.of(context).size.width * .9,
@@ -92,7 +96,7 @@ class AllergyListState extends State<AllergyList> {
                               color: Colors.white, fontSize: 20.0),
                         ),
                         Spacer(),
-                        IconButton(icon: Icon(Icons.add), padding: EdgeInsets.all(0),)
+                        IconButton(icon: Icon(Icons.edit,color: Colors.white,), padding: EdgeInsets.all(0),)
                       ],
                     )),
                 new Row(children: <Widget>[

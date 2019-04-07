@@ -42,7 +42,7 @@ class HoldState extends State<Hold> {
         children: <Widget>[
           PollenPage(),
           PollenPage(),
-          PollenPage(),
+          AllergyList(),
           PollenPage(),
         ],
       ),

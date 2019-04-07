@@ -3,7 +3,19 @@ import 'package:myallergy/RaisedGradientButton.dart';
 import 'package:myallergy/allergy_list.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-class AddAlergyPage extends StatelessWidget {
+
+class AddAlergyPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _AddAlergyPage();
+  }
+
+
+}
+
+
+class _AddAlergyPage extends State<AddAlergyPage> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   String allergy, description;
@@ -54,7 +66,11 @@ class AddAlergyPage extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * .25,
                           decoration: new BoxDecoration(
                               color: new Color(0xFFF9F9F9),
-                              boxShadow: [new BoxShadow(color: Colors.black)],
+                              boxShadow: [ new BoxShadow(
+                                color: Color(0xffE2E2E2),
+                                blurRadius: 6,
+                                spreadRadius: 1,
+                              )],
                               borderRadius: new BorderRadius.circular(25.0)),
                           child: new TextFormField(
                             textAlign: TextAlign.left,
