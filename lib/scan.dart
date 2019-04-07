@@ -43,8 +43,10 @@ class ScanPageState extends State<ScanPage> {
         for (var a in data) {
           print(item.toString().toLowerCase().trim() + " " +
               a.toString().split(":")[0].trim().toLowerCase());
-          if (item.toString().toLowerCase().trim() ==
-              a.toString().split(":")[0].trim().toLowerCase()) {
+          if (
+              a.toString().split(":")[0].trim().toLowerCase().contains(item.toString().toLowerCase().trim()) ||
+              item.toString().toLowerCase().contains(a.toString().split(":")[0].trim().toLowerCase())
+          ) {
             probs.add(item.toString());
           }
         }
