@@ -46,7 +46,7 @@ class History extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             print(model[index].getFood());
             return new Container(
-                margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+                margin: EdgeInsets.only(top: 5, left: 15, right: 15),
                 decoration: new BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -57,7 +57,7 @@ class History extends StatelessWidget {
                       )
                     ],
                     borderRadius: new BorderRadius.circular(25.0)),
-                height: MediaQuery.of(context).size.height * .25,
+                height: MediaQuery.of(context).size.height * .3,
                 width: MediaQuery.of(context).size.width * .9,
                 child: Column(
                   children: <Widget>[
@@ -88,13 +88,13 @@ class History extends StatelessWidget {
                             Spacer(),
                             Text(
                               model[index].date,
+                              style: TextStyle(color: Colors.white),
                             )
                           ],
                         )),
                     Container(
                       child: Column(
-                        children: <Widget>[
-                        ],
+                        children: <Widget>[],
                       ),
                       decoration:
                           BoxDecoration(color: Color(0xffEFEFEF), boxShadow: [
@@ -105,39 +105,28 @@ class History extends StatelessWidget {
                         )
                       ]),
                     ),
+                    Container(
+                      child: Ingrid(model[index].getIngrid()),
+                    ),
+                    SizedBox(height: 10,),
                     new Row(
                       children: <Widget>[
-                        new Text(
-                          'Notes:' + model[index].note,
-                          textAlign: TextAlign.start,
+                        SizedBox(
+                          width: 10,
                         ),
-                       ],
+                        new Text(
+                          'Notes: ' + model[index].note,
+                          textAlign: TextAlign.start,
+                        ),SizedBox(height: 40,),
+                      ],
                     ),
-                    Container(child:
-                    Ingrid(model[index].getIngrid()),),
-                    RaisedGradientButton(
-                          width: MediaQuery.of(context).size.width * .5,
-                          height: MediaQuery.of(context).size.height * .04,
-                          margin: EdgeInsets.only(
-                              left: 10, right: 10, top: 20, bottom: 20),
-                          child: Text(
-                            'Remove',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          gradient: LinearGradient(
-                            colors: <Color>[
-            Color(0xffFFA1A1),
-            Color(0xffFFA1A1)
-                            ],
-                          ),
-                          onPressed: () {}),
-
                   ],
                 ));
           },
           itemCount: model.length,
-        ))
-      ,Potential({"LOL"})],
+        )),
+        Potential({"Milk","Soy","Wheat"})
+      ],
     );
   }
 }

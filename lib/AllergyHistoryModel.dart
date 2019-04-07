@@ -5,7 +5,7 @@ class AllergyHistoryModel {
   String note;
   String date;
 
-  AllergyHistoryModel(this.food,this.ingrid,this.isAllergic,this.note,this.date);
+  AllergyHistoryModel(this.food,this.ingrid,this.note,this.date);
 
   String getFood(){
     return food;
@@ -19,9 +19,6 @@ class AllergyHistoryModel {
   }
  List<String> getIngrid(){
     return ingrid;
-  }
-  List<bool> getisAllergic(){
-    return isAllergic;
   }
 
 
